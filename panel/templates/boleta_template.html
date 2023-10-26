@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Boleta de Pago</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .invoice {
+            width: 400px; /* Ancho de la factura */
+            margin: 0 auto; /* Centrar la factura horizontalmente */
+            border: 2px solid #000;
+            padding: 10px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+        }
+        .content {
+            display: flex; /* Mostrar contenido en dos columnas */
+        }
+        .column {
+            flex: 1; /* Cada columna ocupa la mitad del espacio */
+        }
+        p {
+            margin: 0;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+        <div class="header">
+            <h1>Boleta de Pago</h1>
+        </div>
+        <div class="content">
+            <div class="column">
+                <p>Número de Boleta: {{ numero_boleta }}</p>
+                <p>RUT: {{ rut }}</p>
+                <p>Sector: {{ sector }}</p>
+            </div>
+            <div class="column">
+                <p>Nombre del Cliente: {{ nombres }} {{ apellidos }}</p>
+                <p>Consumo en Metros Cúbicos: {{ consumo_metros_cubicos }}</p>
+                <p>Total a Pagar: {{ total_pagar }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

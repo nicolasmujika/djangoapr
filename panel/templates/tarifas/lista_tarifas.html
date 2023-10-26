@@ -1,0 +1,37 @@
+{% extends 'index_master.html' %}
+
+{% block content %}
+<style>
+    .texto-grande {
+        font-size: 18px; /* Ajusta el tamaño de fuente según tus preferencias */
+    }
+</style>
+<div class="right_col" role="main">
+    <h1>Lista de Tarifas</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="texto-grande">Nombre</th>
+                <th scope="col" class="texto-grande">Monto</th>
+                <th scope="col" class="texto-grande">Descripción</th>
+                <th scope="col" class="texto-grande">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tarifa in tarifas %}
+            <tr>
+                <td class="texto-grande">{{ tarifa.nombre }}</td>
+                <td class="texto-grande">${{ tarifa.monto }}</td>
+                <td class="texto-grande">{{ tarifa.descripcion }}</td>
+                <td>
+                    <form action="{% url 'eliminar_tarifa' tarifa.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

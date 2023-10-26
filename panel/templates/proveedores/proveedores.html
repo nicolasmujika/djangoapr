@@ -1,0 +1,41 @@
+{% extends 'index_master.html' %}
+
+{% block content %}
+<style>
+    .texto-grande {
+        font-size: 18px; /* Ajusta el tamaño de fuente según tus preferencias */
+    }
+</style>
+<div class="right_col" role="main">
+    <h1>Lista de Proveedores</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="texto-grande">Nombre</th>
+                <th scope="col" class="texto-grande">Teléfono</th>
+                <th scope="col" class="texto-grande">Giro</th>
+                <th scope="col" class="texto-grande">Servicio</th>
+                <th scope="col" class="texto-grande">Categoría</th>
+                <th scope="col" class="texto-grande">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proveedor in proveedores %}
+            <tr>
+                <td class="texto-grande">{{ proveedor.nombre }}</td>
+                <td class="texto-grande">{{ proveedor.telefono }}</td>
+                <td class="texto-grande">{{ proveedor.giro }}</td>
+                <td class="texto-grande">{{ proveedor.servicio }}</td>
+                <td class="texto-grande">{{ proveedor.categoria }}</td>
+                <td>
+                    <form action="{% url 'eliminar_proveedor' proveedor.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <h1> Centro de Notificaciones </h1>
+    <br>
+    <div class="notificaciones">
+        {% for notificacion in notificaciones %}
+        <div class="notificacion">
+            <form method="post" action="{% url 'eliminar_notificacion' notificacion.id %}">
+                {% csrf_token %}
+                <button type="submit" class="eliminar-btn">Eliminar</button>
+            </form>
+            <h3>{{ notificacion.titulo }}</h3>
+            <p>{{ notificacion.mensaje }}</p>
+            <p class="fecha">{{ notificacion.fecha_envio }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .notificaciones {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .notificacion {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #fff; /* Fondo blanco */
+        position: relative;
+    }
+
+    .eliminar-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #ff0000; /* Color de fondo rojo, puedes personalizarlo */
+        color: #fff; /* Texto en blanco, puedes personalizarlo */
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .notificacion h3 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .notificacion p {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .notificacion .fecha {
+        font-size: 12px;
+        color: #888;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+</style>
+{% endblock %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,131 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+    .table th {
+        border-top: none !important;
+    }
+
+    .texto-grande {
+        font-size: 18px;
+    }
+
+    .table-container {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .content-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Estilo para los botones */
+    .btn-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-container form {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    /* Estilo para la tabla */
+    .table-container table {
+        width: 100%;
+        margin-top: 10px; /* Espacio entre el formulario y la tabla */
+    }
+</style>
+
+<div class="right_col" role="main">
+    <div class="content-header">
+        <h1>Lista de clientes</h1>
+        <div class="btn-container">
+            
+                
+            
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="table-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="filter-bar">
+                    <form method="post" class="filter-form">
+                        {% csrf_token %}
+                        <div class="filter-input">
+                            <label for="rut">Filtrar por Rut:</label>
+                            <div class="input-group">
+                                <input type="text" name="rut" id="rut" class="form-control" style="max-width: 150px;" placeholder="Rut">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Filtrar</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 text-right align-self-center">
+                <a href="{% url 'agregar' %}" class="btn btn-success" style="width: 200px;">
+                    <i class="fas fa-user-plus"></i> Agregar Cliente
+                </a>
+            </div>
+        </div>
+        <table class="table">
+    <thead>
+        <tr>
+            <th scope="col" class="texto-grande">#</th>
+            <th scope="col" class="texto-grande">Nombre</th>
+            <th scope="col" class="texto-grande">Apellido</th>
+            <th scope="col" class="texto-grande">Rut</th>
+            <th scope="col" class="texto-grande">Correo</th>
+            <th scope="col" class="texto-grande">Teléfono</th>
+            <th scope="col" class="texto-grande">Sectores</th>
+            <th scope="col" class="texto-grande">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in usuarios %}
+        <tr>
+            <th scope="row" class="texto-grande">{{ u.id }}</th>
+            <td class="texto-grande">{{ u.nombres }}</td>
+            <td class="texto-grande">{{ u.apellidos }}</td>
+            <td class="texto-grande">{{ u.rut }}</td>
+            <td class="texto-grande">{{ u.email }}</td>
+            <td class="texto-grande">{{ u.telefono }}</td>
+            <td class="texto-grande">{{ u.sectores }}</td>
+            <td>
+                <div class="btn-container" style="margin-right: 10px;">
+                    <form action="{% url 'eliminar' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="correo" value="{{ u.email }}">
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                    <a href="{% url 'actualizar' u.id %}" class="btn btn-info" style="margin-right: 10px;">
+                        <i class="fas fa-edit"></i> Actualizar
+                    </a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    </div>
+</div>
+
+
+
+    
+    
+    
+    
+
+{% endblock %}

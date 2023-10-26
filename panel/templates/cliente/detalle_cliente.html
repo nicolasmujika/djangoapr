@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Pago</title>
+    <style>
+        Body {
+            font-family: Calibri, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'FrWork/admin_lte/build/images/paisaje.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilo para la imagen del logo */
+        .logo {
+            display: block;
+            margin: 0 auto; /* Centra horizontalmente la imagen */
+            width: 250px; /* Ajusta el tamaño según tus preferencias */
+        }
+
+        /* Estilo para la lista de montos a pagar */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{% static 'FrWork/admin_lte/build/images/apr.png' %}" alt="Logo de la página" class="logo">
+        <h2>Monto a pagar</h2>
+        <form method="post" action="{% url 'boleta' %}">
+            {% csrf_token %}
+            <ul>
+                <li>Monto a pagar: $5000</li>
+              
+            </ul>
+            <button type="submit"><i class="fa fa-credit-card"></i> Pagar</button>
+        </form>
+        
+    </div>
+</body>
+</html>

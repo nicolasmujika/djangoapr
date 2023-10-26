@@ -1,0 +1,37 @@
+{% extends '../index_mastercli.html' %}
+
+{% block  content %}
+<style>
+  .texto-grande {
+      font-size: 18px; /* Ajusta el tamaño de fuente según tus preferencias */
+  }
+</style>
+<div class="right_col" role="main">
+    <h1>Lista de Boletas</h1>
+    <table class="table ">
+        <thead>
+          <tr>
+            <th scope="col" class="texto-grande">Número de Boleta</th>            
+            <th scope="col" class="texto-grande">Fecha de Vencimiento</th>
+            <th scope="col" class="texto-grande">Estado</th>
+            <th scope="col" class="texto-grande">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>          
+          <tr>
+            <td class="texto-grande">123456789</td>
+            <td class="texto-grande">30/10/2023</td>
+            <td class="texto-grande">Pendiente</td>
+            <td>
+                <a href="" class="btn btn-primary">Ver Boleta</a>
+                
+                <a href="pagina_de_pago" class="btn btn-success">Pagar Boleta</a>
+                
+            </td>
+          </tr>
+         
+        </tbody>
+      </table>
+</div>
+{% endblock  %}
+

@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="images/favicon.ico" type="image/ico" />
+
+    <title>APR</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static '/FrWork/admin_lte/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <!--<link href="{% static '/FrWork/admin_lte/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">-->
+    <!-- NProgress -->
+    <link href="{% static '/FrWork/admin_lte/vendors/nprogress/nprogress.css' %}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{% static '/FrWork/admin_lte/vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
+	
+    <!-- bootstrap-progressbar -->
+    <link href="{% static '/FrWork/admin_lte/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="{% static '/FrWork/admin_lte/vendors/jqvmap/dist/jqvmap.min.css' %}" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="{% static '/FrWork/admin_lte/vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static '/FrWork/admin_lte/build/css/custom.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="localhost:8000" class="site_title"><i class="fa fa-tint fa-1x"></i> <span>APR</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+  
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a href="{% url 'index' %}"><i class="fa fa-home"></i>Perfil</a></li>
+                  
+                  {% if request.user.is_authenticated %}
+                    {% if request.user.usuario_tipo == 'operador'%}
+                      <li><a><i class="fa fa-edit"></i> Usuarios Cliente <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="{% url 'lista' %}">Listar</a></li>
+                          {% if request.user.usuario_tipo == 'administrador' %}
+                            <li><a href="{% url 'agregar' %}">Agregar Cliente</a></li>
+                          {% endif %}
+                        </ul>
+                      </li>
+                      <li><a><i class="fa fa-edit"></i> Notificaciones <span class="fa fa-chevron-down"></span></a>                    
+                        <ul class="nav child_menu">
+                          <li><a href="{% url 'crear_notificacion' %}">Crear Notificación</a></li>
+                          <li><a href="{% url 'centro_notificaciones' %}">Centro de notificaciones</a></li>                      
+                        </ul>                     
+                    {% endif %}
+                    {% if request.user.usuario_tipo == 'administrador' %}
+                      <li><a><i class="fa fa-edit"></i> Usuarios Cliente <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="{% url 'lista' %}">Listar</a></li>
+                          <li><a href="{% url 'agregar' %}">Agregar Cliente</a></li>
+                        </ul>
+                      </li>  
+                      <li><a><i class="fa fa-edit"></i> Usuarios Operador <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="olista">Listar</a></li>
+                          <li><a href="{% url 'oagregar' %}">Agregar Operador</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a>
+                          <i class="fa fa-bar-chart"></i> 
+                          Finanzas <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li><a href="{% url 'ingresos' %}">Ingresos</a></li>
+                          <li><a href="{% url 'egresos' %}">Egresos</a></li>
+                          <li><a href="{% url 'saldo' %}">Saldo</a></li>                         
+                        </ul>
+                      </li>
+                      <li>
+                        <a>
+                          <i class="fa fa-bell"></i> 
+                          Notificaciones <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li><a href="{% url 'crear_notificacion' %}">Crear Notificación</a></li>
+                          <li><a href="{% url 'centro_notificaciones' %}">Centro de notificaciones</a></li>                      
+                        </ul>
+                      </li>
+                      <li>
+                        <a>
+                          <i class="fa fa-money"></i> 
+                          Tarifas <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li><a href="{% url 'agregar_tarifa' %}">Agregar Tarifas</a></li>
+                          <li><a href="{% url 'lista_tarifas' %}">Visualizar Tarifas</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a>
+                          <i class="fa fa-truck"></i> <!-- Agregamos un ícono de camión para representar a los proveedores. -->
+                          Proveedores <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li><a href="{% url 'agregar_proveedor' %}">Agregar proveedor</a></li>   
+                          <li><a href="{% url 'lista_proveedores' %}">Lista de proveedores</a></li>                                          
+                        </ul>
+                      </li>
+                    {% endif %}
+                  {% endif %}
+                </ul>
+              </div>
+                      
+             
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'logout' %}">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+        <!-- ****************************************   -->
+
+        {% block content %}
+        {% endblock %}
+
+
+        <!-- footer content -->
+        
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static '/FrWork/admin_lte/vendors/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static '/FrWork/admin_lte/vendors/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- FastClick -->
+    <script src="{% static '/FrWork/admin_lte/vendors/fastclick/lib/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{% static '/FrWork/admin_lte/vendors/nprogress/nprogress.js' %}"></script>
+    <!-- Chart.js -->
+    <script src="{% static '/FrWork/admin_lte/vendors/Chart.js/dist/Chart.min.js' %}"></script>
+    <!-- gauge.js -->
+    <script src="{% static '/FrWork/admin_lte/vendors/gauge.js/dist/gauge.min.js' %}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{% static '/FrWork/admin_lte/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+    <!-- iCheck -->
+    <script src="{% static '/FrWork/admin_lte/vendors/iCheck/icheck.min.js' %}"></script>
+    <!-- Skycons -->
+    <script src="{% static '/FrWork/admin_lte/vendors/skycons/skycons.js' %}"></script>
+    <!-- Flot -->
+    <script src="{% static '/FrWork/admin_lte/vendors/Flot/jquery.flot.js' %}"></script>
+    <script src="{% static '/FrWork/admin_lte/vendors/Flot/jquery.flot.pie.js' %}"></script>
+    <script src="{% static '/FrWork/admin_lte/vendors/Flot/jquery.flot.time.js' %}"></script>
+    <script src="{% static '/FrWork/admin_lte/vendors/Flot/jquery.flot.stack.js' %}"></script>
+    <script src="{% static '/FrWork/admin_lte/vendors/Flot/jquery.flot.resize.js' %}"></script>
+    <!-- Flot plugins -->
+    <script src="{% static '/FrWork/admin_lte/vendors/flot.orderbars/js/jquery.flot.orderBars.js' %}"></script>
+    <script src="{% static '/FrWork/admin_lte/vendors/flot-spline/js/jquery.flot.spline.min.js' %}"></script>
+    <script src="{% static '/FrWork/admin_lte/vendors/flot.curvedlines/curvedLines.js' %}"></script>
+    <!-- DateJS -->
+    <script src="{% static '/FrWork/admin_lte/vendors/DateJS/build/date.js' %}"></script>
+    <!-- JQVMap -->
+    <script src="{% static '/FrWork/admin_lte/vendors/jqvmap/dist/jquery.vmap.js' %}"></script>
+    <script src="{% static '/FrWork/admin_lte/vendors/jqvmap/dist/maps/jquery.vmap.world.js' %}"></script>
+    <script src="{% static '/FrWork/admin_lte/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js' %}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{% static '/FrWork/admin_lte/vendors/moment/min/moment.min.js' %}"></script>
+    <script src="{% static '/FrWork/admin_lte/vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{% static '/FrWork/admin_lte/build/js/custom.min.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+	
+  </body>
+</html>
+
+
+
+                   

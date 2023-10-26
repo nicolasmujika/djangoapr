@@ -1,0 +1,70 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+<style>
+    .table th {
+        border-top: none !important;
+    }
+
+    .texto-grande {
+        font-size: 18px; /* Ajusta el tamaño de fuente según tus preferencias */
+    }
+
+    /* Estilo para el cuadro que contiene la tabla */
+    .table-container {
+        border: 1px solid #ccc; /* Borde de 1 píxel con color gris claro */
+        padding: 20px; /* Espacio interno alrededor del cuadro */
+        border-radius: 5px; /* Bordes redondeados */
+        background-color: #fff; /* Fondo blanco */
+    }
+</style>
+<div class="right_col" role="main">
+    <h1>Ingresos Totales</h1>
+    <div class="row">
+        <div class="col-md-6 offset-md-3"> <!-- Centra el contenido -->
+            <div class="chart-container" style="text-align: center;">
+                <canvas id="miGrafico" width="520" height="260"></canvas> <!-- Reduzco el tamaño del gráfico -->
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- Agrega la clase "table-container" para envolver la tabla -->
+    <div class="table-responsive table-container">
+        <table class="table"> <!-- Agrega la clase "table-container" para aplicar el estilo -->
+            <thead>
+                <tr>
+                    <th scope="col" class="texto-grande">#</th>
+                    <th scope="col" class="texto-grande">Tipo</th>
+                    <th scope="col" class="texto-grande">Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="texto-grande">1</th>
+                    <td class="texto-grande">Cuotas Mensuales</td>
+                    <td class="texto-grande">$10.000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var ctx = document.getElementById('miGrafico').getContext('2d');
+            var data = {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre'],
+                datasets: [{
+                    label: 'Ingresos',
+                    data: [10, 14, 15, 19, 20, 11, 12, 25, 30, 5],
+                    backgroundColor: ['#2A3F54', '#2A3F54', '#2A3F54', '#2A3F54', '#2A3F54', '#2A3F54', '#2A3F54', '#2A3F54', '#2A3F54', '#2A3F54'],
+                }],
+            };
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+            });
+        });
+    </script>
+</div>
+{% endblock %}

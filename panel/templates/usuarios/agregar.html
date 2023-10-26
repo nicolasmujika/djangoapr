@@ -1,0 +1,101 @@
+{% extends 'index_master.html' %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <h1> Agregar clientes</h1>
+    <br>
+    <form action="{% url 'agregar' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label for="nombre" class="col-4 col-form-label font-size-large">Nombre</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-address-card"></i>
+                        </div>
+                    </div>
+                    <input id="nombre" name="nombre" type="text" class="form-control" required="required">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="apellido" class="col-4 col-form-label font-size-large">Apellido</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-address-card-o"></i>
+                        </div>
+                    </div>
+                    <input id="apellido" name="apellido" type="text" class="form-control" required="required">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="rut" class="col-4 col-form-label font-size-large">Rut</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-address-book-o"></i>
+                        </div>
+                    </div>
+                    <input id="rut" name="rut" type="text" class="form-control" required="required">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="correo" class="col-4 col-form-label font-size-large">Correo</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-inbox"></i>
+                        </div>
+                    </div>
+                    <input id="correo" name="correo" type="email" class="form-control" required="required">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="telefono" class="col-4 col-form-label font-size-large">Teléfono</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class = "input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                    </div>
+                    <input id="telefono" name="telefono" type="number" class="form-control" required="required">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="numero_medidor" class="col-4 col-form-label font-size-large">Número de Medidor</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-tachometer"></i>
+                        </div>
+                    </div>
+                    <input id="numero_medidor" name="numero_medidor" type="text" class="form-control" required="required">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-4 col-8">
+                <button name="submit" type="submit" class="btn btn-primary">Agregar Cliente</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    .font-size-large {
+        font-size: 18px;
+    }
+</style>
+
+{% endblock %}

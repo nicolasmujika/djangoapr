@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+</head>
+<body>
+    <div id="wallet_container"></div>
+    <script>
+        const mp = new MercadoPago('278975919', {
+            locale: 'es-AR'
+        });
+
+        const preferenceId = "{{ preference_id }}";
+
+        mp.checkout({
+            preference: {
+                id: preferenceId
+            }
+        }).render('#wallet_container');
+    </script>
+</body>
+</html>
+
+</html>

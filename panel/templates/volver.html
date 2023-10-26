@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Acceso Restringido</title>
+    <style>
+        body {
+            background-image: url("{% static 'FrWork/admin_lte/build/images/paisaje.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .content {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .content h1 {
+            font-size: 36px;
+        }
+
+        .content p {
+            font-size: 24px;
+        }
+
+        #backButton {
+            background: #FF0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #backButton:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Acceso Restringido</h1>
+        <p>Para acceder a esta página, debe iniciar sesión con las credenciales correctas.</p>
+        <button id="backButton">Regresar</button>
+    </div>
+
+    <script>
+        document.getElementById("backButton").addEventListener("click", function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,62 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+<style>
+    .table th {
+      border-top: none !important;
+    }
+    
+    .texto-grande {
+        font-size: 18px; /* Ajusta el tamaño de fuente según tus preferencias */
+    }
+    
+    /* Estilo para el cuadro que contiene la tabla */
+    .table-container {
+        border: 1px solid #ccc; /* Borde de 1 píxel con color gris claro */
+        padding: 20px; /* Espacio interno alrededor del cuadro */
+        border-radius: 5px; /* Bordes redondeados */
+        background-color: #fff; /* Fondo blanco */
+    }
+</style>
+
+<div class="right_col" role="main">
+    <h1> Lista de Operadores</h1>
+    <br>
+    <!-- Agrega un div con la clase "table-container" para envolver la tabla -->
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="texto-grande">#</th>            
+                    <th scope="col" class="texto-grande">Nombre</th>
+                    <th scope="col" class="texto-grande">Apellido</th>
+                    <th scope="col" class="texto-grande">Rut</th>
+                    <th scope="col" class="texto-grande">Correo</th>
+                    <th scope="col" class="texto-grande">Contraseña</th>
+                    <th scope="col" class="texto-grande">Telefono</th>           
+                    <th scope="col" class="texto-grande">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for o in operadores %}    
+                <tr>
+                    <th scope="row" class="texto-grande">{{ o.id }}</th>
+                    <td class="texto-grande">{{ o.nombres }}</td>
+                    <td class="texto-grande">{{ o.apellidos }}</td>
+                    <td class="texto-grande">{{ o.rut }}</td>
+                    <td class="texto-grande">{{ o.email }}</td>
+                    <td class="texto-grande">********</td>
+                    <td class="texto-grande">{{ o.telefono }}</td>
+                    <td>
+                        <form action="{% url 'oeliminar' o.email %}" method="post">
+                            {% csrf_token %}
+                            <button name="submit" type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}  
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock  %}
